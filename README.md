@@ -1,4 +1,4 @@
-# Simple Todo List
+# Meteor-React-Material Todo List
 
 The Meteor Tutorial app.
 
