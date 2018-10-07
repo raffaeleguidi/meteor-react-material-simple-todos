@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import classnames from 'classnames';
+import { Grid, IconButton, Checkbox, Button } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 import { Tasks } from '../api/tasks.js';
 
@@ -27,28 +29,41 @@ export default class Task extends Component {
       private: this.props.task.private,
     });
 
+    const { classes } = this.props;
+
     return (
       <li className={taskClassName}>
-        <button className="delete" onClick={this.deleteThisTask.bind(this)}>
-          &times;
-        </button>
 
-        <input
-          type="checkbox"
-          readOnly
-          checked={!!this.props.task.checked}
-          onClick={this.toggleChecked.bind(this)}
-        />
+        <Grid container>
 
-        { this.props.showPrivateButton ? (
-          <button className="toggle-private" onClick={this.togglePrivate.bind(this)}>
-            { this.props.task.private ? 'Private' : 'Public' }
-          </button>
-        ) : ''}
+          <Grid item xs={1}>
+            <Checkbox
+                readOnly
+                checked={!!this.props.task.checked}
+                onClick={this.toggleChecked.bind(this)}
+              />
+          </Grid>
+          <Grid item xs={10}>
 
-        <span className="text">
-          <strong>{this.props.task.username}</strong>: {this.props.task.text}
-        </span>
+            { this.props.showPrivateButton ? (
+              <Button className="toggle-private" variant="raised" color="primary" onClick={this.togglePrivate.bind(this)} >
+                { this.props.task.private ? 'Private' : 'Public' }
+              </Button>
+            ) : ''}
+
+            <span className="text">
+              <strong>{this.props.task.username}</strong>: {this.props.task.text}
+            </span>
+
+          </Grid>
+          <Grid item xs={1}>
+            <IconButton color="secondary" onClick={this.deleteThisTask.bind(this)}>
+              <DeleteIcon/>
+            </IconButton>
+          </Grid>
+
+        </Grid>
+
       </li>
     );
   }

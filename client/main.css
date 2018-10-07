@@ -2,14 +2,14 @@
 body {
   font-family: sans-serif;
   background-color: #315481;
-  background-image: linear-gradient(to bottom, #315481, #918e82 100%);
+  /* background-image: linear-gradient(to bottom, #315481, #918e82 100%); */
   background-attachment: fixed;
 
   position: absolute;
-  top: 0;
+  top: 20px;
   bottom: 0;
-  left: 0;
-  right: 0;
+  left: 20px;
+  right: 20px;
 
   padding: 0;
   margin: 0;
@@ -18,18 +18,36 @@ body {
 }
 
 .container {
-  max-width: 600px;
+  /*max-width: 600px;*/
   margin: 0 auto;
   min-height: 100%;
   background: white;
 }
 
 header {
-  background: #d2edf4;
-  background-image: linear-gradient(to bottom, #d0edf5, #e1e5f0 100%);
-  padding: 20px 15px 15px 15px;
+  background: #9ecad6;
+  /* background-image: linear-gradient(to bottom, #d0edf5, #e1e5f0 100%); */
+  
+  padding: 20px;
   position: relative;
 }
+
+.accounts-dialog {
+  text-align: right;
+}
+
+#login-buttons a.login-close-text {
+  float: right;
+  font-size: -2;
+}
+
+.loginBox > div > div > div {
+  margin-left: -175px;
+} 
+
+/* .login-dropdown-list {
+  margin-left: -300px
+} */
 
 #login-buttons {
   display: block;

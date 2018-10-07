@@ -7,6 +7,8 @@ import { Tasks } from '../api/tasks.js';
 
 import Task from './Task.js';
 import AccountsUIWrapper from './AccountsUIWrapper.js';
+import { Typography } from '@material-ui/core';
+import { Grid, Checkbox, Input } from '@material-ui/core';
 
 // App component - represents the whole app
 class App extends Component {
@@ -14,7 +16,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      hideCompleted: false,
+      hideCompleted: false
     };
   }
 
@@ -54,34 +56,48 @@ class App extends Component {
       );
     });
   }
+  
 
   render() {
     return (
       <div className="container">
         <header>
-          <h1>Todo List ({this.props.incompleteCount})</h1>
+          <Grid container>
+          
+            <Grid item xs={10}>
+              <Typography variant="display1" >Todo List ({this.props.incompleteCount})</Typography>
+            </Grid>
 
-          <label className="hide-completed">
-            <input
-              type="checkbox"
-              readOnly
-              checked={this.state.hideCompleted}
-              onClick={this.toggleHideCompleted.bind(this)}
-            />
-            Hide Completed Tasks
-          </label>
+            <Grid align="right" item xs={2}>
+              <AccountsUIWrapper />
+            </Grid>
 
-          <AccountsUIWrapper />
+            <Grid item xs={6}>
+              { this.props.currentUser ?
+                <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
+                  <Input
+                    type="text"
+                    ref="textInput"
+                    placeholder="Type to add new tasks"
+                  />
+                </form> : ''
+              }
+            </Grid>
+            
+            <Grid align="right" item xs={6}>
 
-          { this.props.currentUser ?
-            <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
-              <input
-                type="text"
-                ref="textInput"
-                placeholder="Type to add new tasks"
-              />
-            </form> : ''
-          }
+              <Typography>
+                <label>
+                  <Checkbox
+                    checked={this.state.hideCompleted}
+                    onClick={this.toggleHideCompleted.bind(this)}
+                  />Hide Completed Tasks
+                </label>
+              </Typography>
+              </Grid>
+
+            </Grid>
+
         </header>
 
         <ul>
